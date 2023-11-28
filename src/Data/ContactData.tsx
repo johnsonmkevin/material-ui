@@ -6,5 +6,3 @@ export interface FormValues {
   startDate?: string;
   preference?: string;
 }
-
-export const contactData: Array<FormValues> = [{ id: 1, name: "Shawn Spen" }];

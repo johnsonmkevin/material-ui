@@ -1,22 +1,17 @@
 import {
   Alert,
   AlertTitle,
-  Autocomplete,
   Button,
   Dialog,
   FormControl,
   FormControlLabel,
   FormGroup,
   FormLabel,
-  ListItemText,
-  MenuItem,
   Paper,
   Radio,
   RadioGroup,
-  Select,
   SelectChangeEvent,
   Stack,
-  TextField,
 } from "@mui/material";
 import { DesktopDatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -24,19 +19,19 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs from "dayjs";
 import React, { useState } from "react";
 import { FormValues, contactData, today } from "../../Data/ContactData";
+import BeautifulAutoComplete from "./FormSubComponents/BeautifulAutoComplete";
+import BeautifulSelect from "./FormSubComponents/BeautifulSelect";
+import BeautifulTextField from "./FormSubComponents/BeautifulTextField";
 
-const roles = ["React", "Angular", "Python", "NodeJS", "Machine Learning"];
-const skills = ["Software Dev", "Architect", "Designer", "Business Analyst"];
+export const minWidth = 300;
+export const defaultPreference = "Work From Home";
 
 function ContactForm() {
-  const minWidth = 300;
-  const defaultPreference = "Work From Home";
-
   const getDefaultFormValues = () => {
     return {
       id: contactData.length + 1,
       name: "",
-      role: "React",
+      role: "",
       skills: ["Designer"],
       startDate: `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`,
       preference: defaultPreference,
@@ -60,7 +55,7 @@ function ContactForm() {
     setFormValues({ ...formValues, role: value || "" });
   };
 
-  const handleSelectChange = (event: SelectChangeEvent<string[]>, child: React.ReactNode) => {
+  const handleSelectChange = (event: SelectChangeEvent<string[]>) => {
     const {
       target: { value },
     } = event;
@@ -85,8 +80,8 @@ function ContactForm() {
   const handleSubmit = () => {
     contactData.push(formValues);
     setAlertOpen(true);
-    clearValues();
     console.log(contactData);
+    clearValues();
   };
 
   const handleClearClick = () => {
@@ -94,12 +89,11 @@ function ContactForm() {
   };
 
   const clearValues = () => {
-    setFormValues({ ...getDefaultFormValues() });
+    setFormValues(getDefaultFormValues());
   };
 
   const handleAlertClick = () => {
     setAlertOpen(false);
-    console.log(contactData);
   };
 
   return (
@@ -108,62 +102,37 @@ function ContactForm() {
         <form>
           <FormControl>
             <FormGroup row sx={{ padding: 2, justifyContent: "space-between" }}>
-              <TextField
-                id="name"
-                name="name"
-                label="Name"
-                variant="outlined"
-                sx={{ minWidth: minWidth, marginRight: 2 }}
-                value={formValues.name}
-                onChange={handleTextFieldChange}
-              />
-              <Autocomplete
-                options={roles}
-                sx={{ minWidth: minWidth }}
-                renderInput={(params) => {
-                  return <TextField name="role" {...params} />;
-                }}
-                getOptionLabel={(roleOption) => `${roleOption}`}
-                renderOption={(props, option) => {
-                  return <li {...props}>{`${option}`}</li>;
-                }}
+              <BeautifulTextField value={formValues.name} onChange={handleTextFieldChange} />
+              <BeautifulAutoComplete
                 value={formValues.role || ""}
-                isOptionEqualToValue={(option, value) => option === value || value === ""}
                 onInputChange={handleAutoCompleteOnChange}
               />
             </FormGroup>
             <FormGroup row sx={{ padding: 2, justifyContent: "space-between" }}>
-              <Select
-                id="skill-select"
-                renderValue={(select: string[]) => select.join(", ")}
-                sx={{ minWidth: minWidth, marginRight: 2 }}
+              <BeautifulSelect
                 value={formValues.skills || ""}
                 onChange={handleSelectChange}
-              >
-                {skills.map((skillName) => {
-                  return (
-                    <MenuItem value={skillName} key={skillName}>
-                      <ListItemText primary={skillName} />
-                    </MenuItem>
-                  );
-                })}
-              </Select>
+              ></BeautifulSelect>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DesktopDatePicker
-                  label="Date"
-                  format="MM/DD/YYYY"
-                  slotProps={{
-                    textField: { sx: { minWidth: minWidth } },
-                  }}
                   value={dayjs(formValues.startDate)}
                   onChange={handleDatePickerChange}
                 />
               </LocalizationProvider>
             </FormGroup>
             <FormGroup row sx={{ padding: 2, justifyContent: "space-between" }}>
-              <FormGroup sx={{ minWidth, marginRight: 2 }}>
-                <FormLabel component="legend">Work Preference</FormLabel>
+              <FormGroup
+                sx={{
+                  minWidth: minWidth,
+                  marginRight: 2,
+                  marginBottom: { xs: 2, md: 0 },
+                }}
+              >
+                <FormLabel component="legend" htmlFor="preference-type-radio">
+                  Work Preference
+                </FormLabel>
                 <RadioGroup
+                  aria-label="preference"
                   id="preference-type-radio"
                   name="preference"
                   value={formValues.preference}

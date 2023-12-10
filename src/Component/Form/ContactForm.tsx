@@ -20,6 +20,7 @@ import dayjs from "dayjs";
 import React, { useState } from "react";
 import { FormValues, contactData, today } from "../../Data/ContactData";
 import BeautifulAutoComplete from "./FormSubComponents/BeautifulAutoComplete";
+import BeautifulRadio from "./FormSubComponents/BeautifulRadio";
 import BeautifulSelect from "./FormSubComponents/BeautifulSelect";
 import BeautifulTextField from "./FormSubComponents/BeautifulTextField";
 
@@ -114,39 +115,21 @@ function ContactForm() {
                 onChange={handleSelectChange}
               ></BeautifulSelect>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DesktopDatePicker
-                  value={dayjs(formValues.startDate)}
-                  onChange={handleDatePickerChange}
-                />
+                <div style={{ minWidth: "300px" }}>
+                  <DesktopDatePicker
+                    className="custom-desktop-date-picker"
+                    value={dayjs(formValues.startDate)}
+                    onChange={handleDatePickerChange}
+                  />
+                </div>
               </LocalizationProvider>
             </FormGroup>
             <FormGroup row sx={{ padding: 2, justifyContent: "space-between" }}>
-              <FormGroup
-                sx={{
-                  minWidth: minWidth,
-                  marginRight: 2,
-                  marginBottom: { xs: 2, md: 0 },
-                }}
-              >
-                <FormLabel component="legend" htmlFor="preference-type-radio">
-                  Work Preference
-                </FormLabel>
-                <RadioGroup
-                  aria-label="preference"
-                  id="preference-type-radio"
-                  name="preference"
-                  value={formValues.preference}
-                  onChange={handleRadioChange}
-                >
-                  <FormControlLabel
-                    control={<Radio />}
-                    label={defaultPreference}
-                    value={defaultPreference}
-                  />
-                  <FormControlLabel control={<Radio />} label="Hybrid" value="Hybrid" />
-                  <FormControlLabel control={<Radio />} label="In Office" value="In Office" />
-                </RadioGroup>
-              </FormGroup>
+              <BeautifulRadio
+                preference={formValues.preference}
+                handleRadioChange={handleRadioChange}
+              />
+
               <Stack>
                 <Button onClick={handleSubmit}>Submit</Button>
                 <Button onClick={handleClearClick}>Clear</Button>

@@ -9,14 +9,7 @@ function BeautifulDesktopDatePicker(props: {
 }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DesktopDatePicker
-        {...props}
-        label="Date"
-        format="MM/DD/YYYY"
-        slotProps={{
-          textField: { sx: { minWidth: minWidth } },
-        }}
-      />
+      <DesktopDatePicker {...props} label="Date" format="MM/DD/YYYY" />
     </LocalizationProvider>
   );
 }

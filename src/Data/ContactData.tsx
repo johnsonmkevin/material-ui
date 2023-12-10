@@ -16,7 +16,7 @@ export const contactData: Array<FormValues> = [
     role: "Dev",
     skills: ["React", "Angular"],
     startDate: `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`,
-    preference: "Work From Homer",
+    preference: "Work From Home",
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ export const contactData: Array<FormValues> = [
     role: "Dev",
     skills: ["React"],
     startDate: `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`,
-    preference: "Work From Homer",
+    preference: "Work From Home",
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ export const contactData: Array<FormValues> = [
     role: "Dev",
     skills: ["React"],
     startDate: `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`,
-    preference: "Work From Homer",
+    preference: "Work From Home",
   },
   {
     id: 4,
@@ -40,6 +40,6 @@ export const contactData: Array<FormValues> = [
     role: "Dev",
     skills: ["React"],
     startDate: `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`,
-    preference: "Work From Homer",
+    preference: "Work From Home",
   },
 ];

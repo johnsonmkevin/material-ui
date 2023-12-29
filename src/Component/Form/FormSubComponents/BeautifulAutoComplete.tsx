@@ -2,7 +2,7 @@ import { Autocomplete, AutocompleteProps, TextField } from "@mui/material";
 import React from "react";
 import { minWidth } from "../ContactForm";
 
-const roles = ["React", "Angular", "Python", "NodeJS", "Machine Learning"];
+const roles = ["Software Dev", "Architect", "Designer", "Business Analyst"];
 
 function BeautifulAutoComplete(props: {
   value: string;

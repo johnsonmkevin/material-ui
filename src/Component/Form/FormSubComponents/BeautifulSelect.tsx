@@ -1,8 +1,8 @@
 import { ListItemText, MenuItem, Select, SelectChangeEvent, SelectProps } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { minWidth } from "../ContactForm";
 
-const skills = ["Software Dev", "Architect", "Designer", "Business Analyst"];
+const skills = ["React", "Angular", "Python", "NodeJS", "Machine Learning"];
 
 function BeautifulSelect(props: {
   value: string[] | "";
@@ -14,6 +14,7 @@ function BeautifulSelect(props: {
       id="skill-select"
       renderValue={(select: string[]) => select.join(", ")}
       sx={{ minWidth: minWidth, marginRight: 2 }}
+      multiple
     >
       {skills.map((skillName) => {
         return (

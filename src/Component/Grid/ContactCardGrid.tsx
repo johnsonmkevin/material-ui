@@ -46,8 +46,12 @@ function ContactCardGrid() {
                     </ListSubheader>
                   }
                 >
-                  {contact.skills?.map((skill) => {
-                    return <li style={{ paddingBottom: "2px" }}>{skill}</li>;
+                  {contact.skills?.map((skill, id) => {
+                    return (
+                      <li key={id} style={{ paddingBottom: "2px" }}>
+                        {skill}
+                      </li>
+                    );
                   })}
                 </List>
               </CardContent>

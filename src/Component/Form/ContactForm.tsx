@@ -33,7 +33,7 @@ function ContactForm() {
       id: contactData.length + 1,
       name: "",
       role: "",
-      skills: ["Designer"],
+      skills: ["React"],
       startDate: `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`,
       preference: defaultPreference,
     };

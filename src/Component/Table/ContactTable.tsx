@@ -18,10 +18,13 @@ function ContactTable() {
         <TableBody>
           {contactData.map((contact) => {
             return (
-              <TableRow key={contact.name}>
+              <TableRow key={contact.id}>
                 {Object.entries(contact).map(([key, value]) => {
+                  if (key === "skills") {
+                    return <TableCell key={contact.id + key}>{value.join(", ")}</TableCell>;
+                  }
                   if (key !== "id") {
-                    return <TableCell>{value}</TableCell>;
+                    return <TableCell key={contact.id + key}>{value}</TableCell>;
                   }
                   return "";
                 })}

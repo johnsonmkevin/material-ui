@@ -27,6 +27,14 @@ import BeautifulTextField from "./FormSubComponents/BeautifulTextField";
 export const minWidth = 300;
 export const defaultPreference = "Work From Home";
 
+const paperInputStyle = {
+  "& .MuiOutlinedInput-root": {
+    "& > fieldset": { border: "1px solid", borderColor: "primary.main" },
+    "&:hover": { "& > fieldset": { borderColor: "primary.light" } },
+  },
+  "& .MuiFormLabel-root": { color: "primary.dark" },
+};
+
 function ContactForm() {
   const getDefaultFormValues = () => {
     return {
@@ -99,7 +107,7 @@ function ContactForm() {
 
   return (
     <>
-      <Paper>
+      <Paper sx={paperInputStyle}>
         <form>
           <FormControl>
             <FormGroup row sx={{ padding: 2, justifyContent: "space-between" }}>

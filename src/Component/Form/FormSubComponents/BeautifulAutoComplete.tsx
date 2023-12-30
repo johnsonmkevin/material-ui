@@ -14,13 +14,33 @@ function BeautifulAutoComplete(props: {
       options={roles}
       sx={{ minWidth: minWidth }}
       renderInput={(params) => {
-        return <TextField name="role" {...params} />;
+        return (
+          <TextField
+            name="role"
+            sx={{ "& .MuiOutlinedInput-root.Mui-focused": { color: "primary.dark" } }}
+            {...params}
+          />
+        );
       }}
       getOptionLabel={(roleOption) => `${roleOption}`}
       renderOption={(props, option) => {
         return <li {...props}>{`${option}`}</li>;
       }}
       isOptionEqualToValue={(option, value) => option === value || value === ""}
+      ListboxProps={{
+        sx: {
+          height: 100,
+          color: "primary.dark",
+          "& li.MuiAutocomplete-option:nth-child(even)": { backgroundColor: "green" },
+          "& li.MuiAutocomplete-option:hover": { backgroundColor: "gold" },
+          "& .MuiAutocomplete-option[aria-selected='true'].Mui-focused": {
+            backgroundColor: "gold",
+          },
+        },
+      }}
+      onChange={() => {
+        debugger;
+      }}
     />
   );
 }

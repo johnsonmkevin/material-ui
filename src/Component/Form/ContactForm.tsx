@@ -2,11 +2,14 @@ import {
   Alert,
   AlertTitle,
   Button,
+  Checkbox,
   Dialog,
   FormControl,
   FormControlLabel,
   FormGroup,
   FormLabel,
+  ListItemText,
+  MenuItem,
   Paper,
   Radio,
   RadioGroup,
@@ -26,7 +29,7 @@ import BeautifulTextField from "./FormSubComponents/BeautifulTextField";
 
 export const minWidth = 300;
 export const defaultPreference = "Work From Home";
-
+const skills = ["React", "Angular", "Python", "NodeJS", "Machine Learning"];
 const paperInputStyle = {
   "& .MuiOutlinedInput-root": {
     "& > fieldset": { border: "1px solid", borderColor: "primary.main" },
@@ -118,10 +121,16 @@ function ContactForm() {
               />
             </FormGroup>
             <FormGroup row sx={{ padding: 2, justifyContent: "space-between" }}>
-              <BeautifulSelect
-                value={formValues.skills || ""}
-                onChange={handleSelectChange}
-              ></BeautifulSelect>
+              <BeautifulSelect value={formValues.skills || ""} onChange={handleSelectChange}>
+                {skills.map((skillName) => {
+                  return (
+                    <MenuItem value={skillName} key={skillName}>
+                      <Checkbox checked={formValues.skills?.includes(skillName)} />
+                      <ListItemText primary={skillName} />
+                    </MenuItem>
+                  );
+                })}
+              </BeautifulSelect>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <div style={{ minWidth: "300px" }}>
                   <DesktopDatePicker

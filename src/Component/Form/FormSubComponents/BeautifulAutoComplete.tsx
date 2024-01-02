@@ -31,7 +31,7 @@ function BeautifulAutoComplete(props: {
         sx: {
           height: 100,
           color: "primary.dark",
-          "& li.MuiAutocomplete-option:nth-child(even)": { backgroundColor: "green" },
+          "& li.MuiAutocomplete-option:nth-of-type(even)": { backgroundColor: "green" },
           "& li.MuiAutocomplete-option:hover": { backgroundColor: "gold" },
           "& .MuiAutocomplete-option[aria-selected='true'].Mui-focused": {
             backgroundColor: "gold",

@@ -117,8 +117,8 @@ function ContactForm() {
           ...paperInputStyle,
           margin: { xs: 1, sm: 2 },
           zIndex: "appBar",
-
           "&:hover": { backgroundColor: "rgba(0,0,0,0.1)" },
+          backgroundColor: "grid.dark",
           /* "& button.MuiButton-text": { backgroundColor: "primary.light" }, */
         }}
       >

@@ -1,6 +1,7 @@
 import { AppBar, Drawer, List, ListItem, Toolbar, Typography } from "@mui/material";
-import { Theme, useTheme } from "@mui/material/styles";
+import { Theme, ThemeProvider, useTheme } from "@mui/material/styles";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BeautifulTheme } from "../../Theme/BeautifulTheme";
 import ContactDataGrid from "../DataGrid/ContactDataGrid";
 import ContactForm from "../Form/ContactForm";
 import ContactCardGrid from "../Grid/ContactCardGrid";
@@ -69,14 +70,15 @@ function NavDrawer() {
         </Drawer>
         <main style={simpleStyles.content}>
           <Toolbar />
-          <Routes>
-            <Route path={"/"} element={<ContactForm />} />
-            <Route path={"/form"} element={<ContactForm />} />
-            <Route path={"/grid"} element={<ContactCardGrid />} />
-            <Route path={"/table"} element={<ContactTable />} />
-
-            <Route path={"/datagrid"} element={<ContactDataGrid />} />
-          </Routes>
+          <ThemeProvider theme={BeautifulTheme}>
+            <Routes>
+              <Route path={"/"} element={<ContactForm />} />
+              <Route path={"/form"} element={<ContactForm />} />
+              <Route path={"/grid"} element={<ContactCardGrid />} />
+              <Route path={"/table"} element={<ContactTable />} />
+              <Route path={"/datagrid"} element={<ContactDataGrid />} />
+            </Routes>
+          </ThemeProvider>
         </main>
       </div>
     </BrowserRouter>

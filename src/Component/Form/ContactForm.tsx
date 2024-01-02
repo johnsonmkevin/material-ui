@@ -26,6 +26,7 @@ import BeautifulAutoComplete from "./FormSubComponents/BeautifulAutoComplete";
 import BeautifulRadio from "./FormSubComponents/BeautifulRadio";
 import BeautifulSelect from "./FormSubComponents/BeautifulSelect";
 import BeautifulTextField from "./FormSubComponents/BeautifulTextField";
+import { StyledFormGroup } from "./FormSubComponents/StyledFormGroup";
 
 export const minWidth = 300;
 export const defaultPreference = "Work From Home";
@@ -110,17 +111,27 @@ function ContactForm() {
 
   return (
     <>
-      <Paper sx={paperInputStyle}>
+      <Paper sx={paperInputStyle}></Paper>
+      <Paper
+        sx={{
+          ...paperInputStyle,
+          margin: { xs: 1, sm: 2 },
+          zIndex: "appBar",
+
+          "&:hover": { backgroundColor: "rgba(0,0,0,0.1)" },
+          /* "& button.MuiButton-text": { backgroundColor: "primary.light" }, */
+        }}
+      >
         <form>
           <FormControl>
-            <FormGroup row sx={{ padding: 2, justifyContent: "space-between" }}>
+            <StyledFormGroup row paddingtop={10}>
               <BeautifulTextField value={formValues.name} onChange={handleTextFieldChange} />
               <BeautifulAutoComplete
                 value={formValues.role || ""}
                 onInputChange={handleAutoCompleteOnChange}
               />
-            </FormGroup>
-            <FormGroup row sx={{ padding: 2, justifyContent: "space-between" }}>
+            </StyledFormGroup>
+            <StyledFormGroup row>
               <BeautifulSelect value={formValues.skills || ""} onChange={handleSelectChange}>
                 {skills.map((skillName) => {
                   return (
@@ -140,8 +151,8 @@ function ContactForm() {
                   />
                 </div>
               </LocalizationProvider>
-            </FormGroup>
-            <FormGroup row sx={{ padding: 2, justifyContent: "space-between" }}>
+            </StyledFormGroup>
+            <StyledFormGroup row>
               <BeautifulRadio
                 preference={formValues.preference}
                 handleRadioChange={handleRadioChange}
@@ -151,7 +162,7 @@ function ContactForm() {
                 <Button onClick={handleSubmit}>Submit</Button>
                 <Button onClick={handleClearClick}>Clear</Button>
               </Stack>
-            </FormGroup>
+            </StyledFormGroup>
           </FormControl>
         </form>
       </Paper>
